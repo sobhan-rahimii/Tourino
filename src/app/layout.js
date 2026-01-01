@@ -3,6 +3,8 @@ import "./globals.css";
 import Header from "@/components/organisms/Header";
 import Footer from "@/components/organisms/Footer";
 import ModalContainer from "@/components/partials/containers/ModalContainer";
+import TantackQueryProvider from "@/components/partials/providers/TantackQueryProvider";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,11 +27,14 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ModalContainer>
-          <Header />
-          <main style={{ minHeight: "1000px" }}>{children}</main>
-          <Footer />
-        </ModalContainer>
+        <TantackQueryProvider>
+          <ModalContainer>
+            <Header />
+            <main style={{ minHeight: "1000px" }}>{children}</main>
+            <Footer />
+          </ModalContainer>
+        </TantackQueryProvider>
+        <Toaster/>
       </body>
     </html>
   );

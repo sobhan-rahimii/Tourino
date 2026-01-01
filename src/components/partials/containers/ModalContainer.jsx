@@ -13,9 +13,10 @@ export function useModal(){
 function ModalContainer({children}) {
   const [isOpen, setIsOpen] = useState(false);
   const [step,setStep] = useState(1)
+  const [mobile, setMobile] = useState("");
   
   return (
-    <ModalContext.Provider value={{isOpen,setIsOpen,step,setStep}}>
+    <ModalContext.Provider value={{isOpen,setIsOpen,step,setStep,mobile,setMobile}}>
       {children}
       {isOpen && (<div>
         {step === 1 && <SendOtp/>}
