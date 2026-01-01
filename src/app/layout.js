@@ -1,5 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/organisms/Header";
+import Footer from "@/components/organisms/Footer";
+import ModalContainer from "@/components/partials/containers/ModalContainer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,11 +21,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="fa" dir="rtl">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ModalContainer>
+          <Header />
+          <main style={{ minHeight: "1000px" }}>{children}</main>
+          <Footer />
+        </ModalContainer>
       </body>
     </html>
   );
