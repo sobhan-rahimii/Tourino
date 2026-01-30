@@ -6,6 +6,7 @@ import { useState } from "react";
 import {isValidMobile} from "../../../core/utils/validation"
 import { useSendOtp } from "@/core/services/mutations";
 import toast from "react-hot-toast";
+import { useGetUserData } from "@/core/services/queries";
 
 
 function SendOtp() {
@@ -32,6 +33,8 @@ function SendOtp() {
       }
     })
   }
+
+  
 
   return (
     <div className="fixed top-0 right-0 w-screen h-screen bg-black/20 z-50 backdrop-blur-sm flex items-center justify-center">

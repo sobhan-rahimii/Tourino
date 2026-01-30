@@ -6,7 +6,7 @@ import Link from "next/link";
 function TourCards(props) {
   const { image, title, price } = props;
 
-  // border: 1px solid #0000001F
+ 
   console.log(props);
   return (
     <div>
@@ -18,7 +18,7 @@ function TourCards(props) {
         </div>
         <div className="flex">
           <Link
-            href="/"
+            href="{`/tours/${tour?.id}`}"
             className="ml-[82px] mb-[8px] mr-[8px] w-[64px] pr-[20px]  pb[1px] pl-[20px  ] h-[25px] rounded-sm bg-[#28A745] mt-[8px]"
           >
             رزرو

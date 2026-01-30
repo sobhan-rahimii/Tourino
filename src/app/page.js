@@ -12,8 +12,17 @@ import Image from "next/image";
 
 export const dynamic = "force-dynamic";
 
-export default async function Home() {
-  const tours = await getTours();
+export default async function Home({searchParams}) {
+
+  const sParams = await searchParams
+
+  const filters = {}
+  if(sParams.originId) filters.originId = sParams.originId
+  if(sParams.destinationId) filters.destinationId = sParams.destinationId
+  if(sParams.startDate) filters.startDate = sParams.startDate
+  if(sParams.endDate) filters.endDate=sParams.endDate
+  const tours = await getTours(filters)
+
   return (
     <>
       <Banner />

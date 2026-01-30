@@ -2,6 +2,7 @@
 
 import CheckOtpForm from "@/components/templates/authForm/CheckOtpForm";
 import SendOtp from "@/components/templates/authForm/SendOtp";
+import { useGetUserData } from "@/core/services/queries";
 import React, { createContext, useContext, useState } from "react";
 
 const ModalContext = createContext()
@@ -14,6 +15,7 @@ function ModalContainer({children}) {
   const [isOpen, setIsOpen] = useState(false);
   const [step,setStep] = useState(1)
   const [mobile, setMobile] = useState("");
+  
   
   return (
     <ModalContext.Provider value={{isOpen,setIsOpen,step,setStep,mobile,setMobile}}>
