@@ -110,20 +110,20 @@ function SearchBox() {
                 alt="location"
               />
               <span className="mt-[26.12px] mr-[8px] ">
-                {destination ? destination.destination.name : "مقصد"}
+                {destination ? destination.name : "مقصد"}
               </span>
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="   mr-[80px]  flex-col w-[218px] h-fit border border-solid border-[#00000033]  rounded-[8px] bg-[#FFFFFF]">
             <DropdownMenuLabel className="text-right">
               <span className="w-[218px] h-[35px] mr-[] ">
-                {destination ? destination.destination.name : "مقصد"}
+              مقصد
               </span>
             </DropdownMenuLabel>
             {cities.map((city2) => (
               <DropdownMenuItem
                 key={city2.id}
-                onClick={() => setDestination(city2)}
+                onClick={() => setDestination(city2?.destination)}
                 className="flex justify-end"
               >
                 <div className="flex">

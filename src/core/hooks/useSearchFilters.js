@@ -32,10 +32,10 @@ export function useSearchFilters(cities) {
     console.log(cities);
 
     if (destinationId) {
-      const found = cities.find(
+      const foundDest = cities.find(
         (item) => String(item.destination.id) === String(destinationId)
       );
-      if (found) setOrigin(found);
+      if (foundDest) setDestination(foundDest.destination);
     } else {
       setDestination(null);
     }
@@ -52,9 +52,9 @@ export function useSearchFilters(cities) {
 
   const applyFilters = () => {
     const params = new URLSearchParams();
-    if (origin?.origin?.id) params.set("originId", origin.origin.id);
-    if (destination?.destination?.id)
-      params.set("destinationId", destination.destination.id);
+    if (origin?.id) params.set("originId", origin.id);
+    if (destination?.id)
+      params.set("destinationId", destination.id);
 
     if (dateRange?.from) {
       params.set(
