@@ -1,10 +1,11 @@
 "use client";
 
+import { sp } from "@/core/utils/formatNumber";
 import Image from "next/image";
 import Link from "next/link";
 
 function TourCards(props) {
-  const { image, title, price } = props;
+  const {id, image, title, price } = props;
 
  
   console.log(props);
@@ -18,15 +19,16 @@ function TourCards(props) {
         </div>
         <div className="flex">
           <Link
-            href="{`/tours/${tour?.id}`}"
+            href={`/tours/${id}`}
             className="ml-[82px] mb-[8px] mr-[8px] w-[64px] pr-[20px]  pb[1px] pl-[20px  ] h-[25px] rounded-sm bg-[#28A745] mt-[8px]"
           >
             رزرو
           </Link>
 
-          <p className="   inline-block mt-[8px] mb-[8px] ml-[8.44px] ">
+          <p className=" font-normal text-base text-blue-600  inline-block mt-[8px] mb-[8px] mr-[30px] ">
             
-            {price}تومان
+          {sp(price)}
+          <span className="text-xs font-normal ]">تومان</span>
           </p>
         </div>
       </div>

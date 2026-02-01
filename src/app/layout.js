@@ -1,4 +1,6 @@
+
 import { Geist, Geist_Mono } from "next/font/google";
+
 import "./globals.css";
 import Header from "@/components/organisms/Header";
 import Footer from "@/components/organisms/Footer";
@@ -6,6 +8,8 @@ import ModalContainer from "@/components/partials/containers/ModalContainer";
 import TantackQueryProvider from "@/components/partials/providers/TantackQueryProvider";
 import { Toaster } from "react-hot-toast";
 import { yekanBakh } from "./fonts";
+import NetworkProvider from "@/components/partials/providers/NetworkProvider";
+
 
 
 
@@ -15,15 +19,19 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  
   return (
     <html lang="fa" dir="rtl">
       <body
         className={yekanBakh.className}
       >
+
         <TantackQueryProvider>
           <ModalContainer>
             <Header  />
-            <main style={{ minHeight: "100px" }}>{children}</main>
+        <NetworkProvider>
+            <main style={{ minHeight: "734px" }}>{children}</main>
+        </NetworkProvider>
             <Footer />
           </ModalContainer>
         </TantackQueryProvider>
