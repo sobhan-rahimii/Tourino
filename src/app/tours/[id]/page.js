@@ -12,26 +12,29 @@ import calendars from "../../../assets/images/icon/calendars.png";
 import bus from "../../../assets/images/icon/bus.png";
 import profileuserr from "../../../assets/images/icon/profileuserr.png"
 import security from "../../../assets/images/icon/security.png"
-
 import Link from "next/link";
+import { sp } from "@/core/utils/formatNumber";
+
+
 
 async function TourDetails({ params }) {
-  const { id } = params;
-  // const data = await getTourDetails();
-  // console.log(data);
+  const { id } =await params;
+  const data = await getTourDetails(id)
+  console.log(data);
   return (
     <div className="w-[1188px] h-[427px] border border-solid boder-[#00000033] rounded-[10px] mt-[36px] mr-auto ml-auto bg-[#FFFFFF] ">
       <div className="flex  ">
         <Image
-          src={arbil}
+          src={data.image}
           width={397}
           height={265}
           alt="arbil"
+          unoptimized={true}
           className="mr-[20px] mt-[29px]   "
         />
         <div className="flex-col">
           <h1 className="font-bold text-[32px] mt-[29px] mr-[24px]">
-            تور هیلر
+            {data.title}
           </h1>
           <p className="font-[20px] font-normal mr-[24px] mt-[16px]">5روز</p>
           <div className="flex">
@@ -67,7 +70,7 @@ async function TourDetails({ params }) {
             </p>
           </div>
           <div className="flex">
-            <span className="mt-[32px] mr-[24px]">17,500,000 تومان</span>
+            <span className="mt-[32px] mr-[24px]">{sp(data.price)} تومان</span>
             <Link
               className="mr-[343px] mt-[26px] bg-[#28A745] w-[204px] h-[56px] rounded-[10px] pr-[46px] pl-[46px] pt-[9px]  pb-[9px] text-center font-[24px] font-normal"
               href="/"
@@ -93,7 +96,7 @@ async function TourDetails({ params }) {
             </p>
           </div>
           <p className="mr-[30px] mt-[12px] font-medium text-[#000000] text-[16px]">
-            سنندج
+            {data.origin.name}
           </p>
         </div>
 
@@ -146,7 +149,7 @@ async function TourDetails({ params }) {
             />
             <p className="mt-[38px] mr-[8px]">حمل و نقل</p>
           </div>
-          <p className="mt-[16px]">اتوبوس</p>
+          <p className="mt-[16px]">{data.fleetVehicle}</p>
         </div>
 
         <div className="w-[84px] h-0 border border-solid border-[#00000040] rotate-90 mt-[65px] mb-[20px] mr-[2px]"></div>
@@ -157,7 +160,7 @@ async function TourDetails({ params }) {
             <p className="mr-[8px] mt-[38px]">ظرفیت</p>
 
           </div>
-          <p className="mt-[16px]">حداکثر 30 نفر</p>
+          <p className="mt-[16px]">حداکثر {data.availableSeats} نفر</p>
 
         </div>
         <div className="w-[84px] h-0 border border-solid border-[#00000040] rotate-90 mt-[65px] mb-[20px] mr-[2px]"></div>
