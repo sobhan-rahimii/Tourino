@@ -14,6 +14,7 @@ import profileuserr from "../../../assets/images/icon/profileuserr.png"
 import security from "../../../assets/images/icon/security.png"
 import Link from "next/link";
 import { sp } from "@/core/utils/formatNumber";
+import ReservButton from "@/components/atoms/ReservButton";
 
 
 
@@ -71,12 +72,7 @@ async function TourDetails({ params }) {
           </div>
           <div className="flex">
             <span className="mt-[32px] mr-[24px]">{sp(data.price)} تومان</span>
-            <Link
-              className="mr-[343px] mt-[26px] bg-[#28A745] w-[204px] h-[56px] rounded-[10px] pr-[46px] pl-[46px] pt-[9px]  pb-[9px] text-center font-[24px] font-normal"
-              href={`/checkout/${data.id}`}
-            >
-              رزرو و خرید
-            </Link>
+            <ReservButton id={id} />
           </div>
         </div>
       </div>
