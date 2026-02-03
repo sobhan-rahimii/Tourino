@@ -1,15 +1,15 @@
 "use client"
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
+
 import React from 'react'
 
-async function PaymentPage({searchParams}) {
-    const {status} = await searchParams
-    const router = useRouter()
+ function PaymentPage() {
+    const searchParams = useSearchParams()
+    const status = searchParams.get("status")
+    
 
-    if(status === null) {
-        return router.push("/checkoutNull")
-    }
+    
 
 
 

@@ -47,6 +47,17 @@ function CheckoutForm() {
 
   const onSubmit = async (data) => {
     console.log(data);
+
+    try{
+      const response = await order(data)
+      console.log("success",response);
+      if(data) toast.success(data.message)
+    router.push("/payment?status=success");
+
+    }catch(error){
+      console.log(error,"error");
+
+    }
   };
 
   useEffect(() => {
@@ -63,13 +74,9 @@ function CheckoutForm() {
   }, []);
   console.log(basket);
 
-  const checkoutHandler = async (event) => {
-    event.preventDefault();
-    const result = await order({ fullName, nationalCode, birthDate, gender });
-    if (result) toast.success(result.message);
-    console.log(result);
-    router.push("/payment?status=success");
-  };
+  
+
+   
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -157,7 +164,7 @@ function CheckoutForm() {
                 control={control}
                 name="gender"
                 render={({ field }) => (
-                  <Select onValueChange={(valu) => setGender(valu)}>
+                  <Select onValueChange={field.onChange} value={field.value}>
                     <SelectTrigger className=" flex-row-reverse !w-[265px] !h-[50px]  mr-[20px] mt-[24px] border border-solid border-[#00000080] rounded-[5px]">
                       <SelectValue placeholder="جنسیت" />
                     </SelectTrigger>

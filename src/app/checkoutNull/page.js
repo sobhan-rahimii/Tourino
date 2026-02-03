@@ -1,4 +1,5 @@
 import React from "react";
+import Checkout from "../checkout/[id]/page";
 
 async function CheckoutNull() {
  
@@ -10,4 +11,4 @@ async function CheckoutNull() {
   
 }
 
-export default page;
+export default CheckoutNull;
