@@ -7,6 +7,7 @@ import calendardate from "../../assets/images/icon/calendardate.png";
 import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
+import order from "@/services/order";
 
 import {
   Select,
@@ -18,9 +19,12 @@ import {
 import Link from "next/link";
 import getUserBasket from "@/services/getUserBasket";
 import { sp } from "@/core/utils/formatNumber";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 
  function CheckoutForm() {
+  const router = useRouter()
   const [birthDate, setBirthDate] = useState("");
   const [nationalCode, setNationalCode] = useState("");
   const [fullName, setFullName] = useState("");
@@ -29,15 +33,30 @@ import { sp } from "@/core/utils/formatNumber";
 
   useEffect(() => {
     const fetchBasket = async () => {
-      const data = await getUserBasket();
-      setBasket(data);
+      try{
+        const data = await getUserBasket();
+        setBasket(data);
+
+      }catch(err){
+        console.log(err.message);
+        setBasket(null)
+
+      }
     };
     fetchBasket();
   }, []);
   console.log(basket);
 
+  const checkoutHandler = async (event)=>{
+    event.preventDefault()
+    const result = await order({fullName,nationalCode,birthDate,gender})
+    if(result) toast.success(result.message)
+    console.log(result);
+    router.push("/payment?status=success")
+  }
+
   return (
-    <form>
+    <form onSubmit={checkoutHandler}>
       <div className="flex">
         <div className="w-[865] h-[228px] rounded-[10px] border border-solid border-[#00000033] mr-[126px] mt-[36px] ">
           <div className="flex">
@@ -91,7 +110,7 @@ import { sp } from "@/core/utils/formatNumber";
               />
             </div>
             <div>
-              <Select onValueChange={(valu) => setGender(value)}>
+              <Select onValueChange={(valu) => setGender(valu)}>
                 <SelectTrigger className=" flex-row-reverse !w-[265px] !h-[50px]  mr-[20px] mt-[24px] border border-solid border-[#00000080] rounded-[5px]">
                   <SelectValue placeholder="جنسیت" />
                 </SelectTrigger>
@@ -110,7 +129,7 @@ import { sp } from "@/core/utils/formatNumber";
         <div className="w-[307] h-[228px] rounded-[10px] border border-solid  border-[#00000033] inline-block  ml-[126px] mr-[16px] mt-[36px]">
           <div className="flex">
             <h1 className="mr-[12px] mt-[16px] font-semibold text-[24px]">
-              {basket.title}
+              {basket?.title}
             </h1>
             <p className="mr-[95px] mt-[22px] font-normal text-[16px] text-[#282828] backdrop-opacity-[50]">
               5 روز و 4 شب
@@ -122,17 +141,18 @@ import { sp } from "@/core/utils/formatNumber";
               قیمت نهایی
             </p>
             <div className="flex mr-[91px] mt-[30px] ">
-              <p className="">{sp(basket.price)} </p>
+              <p className="">{sp(basket?.price)} </p>
               <span>تومان</span>
             </div>
           </div>
           <div>
-            <Link
-              href="/"
+            <button
+            type="submit"
+              
               className="mt-[20px] mr-[12px] ml-[12px] w-[283px] h-[56px] bg-[#28A745] rounded-[10px] inline-block pr-[56.5px] pt-[9px] pb-[9px] pl-[56.5px] text-center text-[24px] font-normal text-[#FFFFFF]"
             >
               ثبت و خرید نهایی
-            </Link>
+            </button>
           </div>
         </div>
       </div>
