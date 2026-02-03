@@ -29,10 +29,7 @@ import { date } from "zod";
 
 function CheckoutForm() {
   const router = useRouter();
-  const [birthDate, setBirthDate] = useState("");
-  const [nationalCode, setNationalCode] = useState("");
-  const [fullName, setFullName] = useState("");
-  const [gender, setGender] = useState("");
+  
   const [basket, setBasket] = useState([]);
 
   const {
@@ -96,8 +93,8 @@ function CheckoutForm() {
             <input
               {...register("fullName")}
               placeholder="نام و نام خانوادگی"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
+             
+              
               className="w-[262] h-[50px] border border-solid border-[#00000080] rounded-[5px] mr-[23.35px] mt-[17px]"
             />
             {errors.fullName && (
@@ -108,8 +105,8 @@ function CheckoutForm() {
             <input
               {...register("nationalCode")}
               placeholder="کد ملی"
-              value={nationalCode}
-              onChange={(e) => setNationalCode(e.target.value)}
+              
+              
               className="w-[261px] h-[50px] border border-solid border-[#00000080] rounded-[5px] mr-[16px] mt-[17px]"
             />
             {errors.nationalCode && (
