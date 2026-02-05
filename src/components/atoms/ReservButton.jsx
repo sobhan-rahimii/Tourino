@@ -1,6 +1,6 @@
 "use client";
 
-import addToBasket from "@/services/addToBasket";
+import addToBasket from "@/core/services/addToBasket";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";

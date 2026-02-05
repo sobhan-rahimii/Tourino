@@ -6,7 +6,7 @@ import BannerPhone from "@/components/organisms/BannerPhone";
 import SearchBox from "@/components/organisms/SearchBox";
 import Slider from "@/components/organisms/Slider";
 import WhyTourino from "@/components/organisms/WhyTourino";
-import getTours from "@/services/getTours";
+import getTours from "@/core/services/getTours";
 import Image from "next/image";
 
 

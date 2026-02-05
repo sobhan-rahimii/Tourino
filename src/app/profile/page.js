@@ -22,15 +22,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { da } from "zod/v4/locales";
-import editProfile from "@/services/editProfile";
+import editProfile from "@/core/services/editProfile";
 import toast from "react-hot-toast";
 import api from "@/core/config/api";
 
 function ProfilePage() {
   const [birthDate, setBirthDate] = useState("");
   const [editMode, setEditMode] = useState(null);
-  const [personal, setpersnal] = useState({});
+  const [personal, setPersonal] = useState({});
 
   const {
     register: registerPersonal,
@@ -55,7 +54,7 @@ function ProfilePage() {
     const fetchData = async () => {
       const res = await api.get("/user/profile");
 
-      setpersnal(res?.data);
+      setPersonal(res?.data);
       console.log(res);
     };
     fetchData();
@@ -66,7 +65,7 @@ function ProfilePage() {
     const result = await editProfile(data);
     if (result) toast.success(result.message);
     console.log(result);
-    setpersnal((prev)=>({...prev,...data}))
+    setPersonal((prev) => ({ ...prev, ...data }));
     setEditMode(null);
     
   };
@@ -76,7 +75,7 @@ function ProfilePage() {
     const result = await editProfile(data)
     if(result) toast.success(result?.message)
     console.log(result);
-  setpersnal((prev)=>({...prev,...data}))
+  setPersonal((prev) => ({ ...prev, ...data }));
     setEditMode(null);
 
   }
@@ -112,13 +111,13 @@ function ProfilePage() {
                   </span>
                 )}
                 <input
-                  {...registerPersonal("natinoalCode")}
+                  {...registerPersonal("nationalCode")}
                   placeholder="کد ملی"
                   className="w-[255px] h-[45px] mr-[28px] mt-[20px] border border-solid border-[#00000080] rounded-[5px] "
                 />
-                {errorsPersonal.natinoalCode && (
+                {errorsPersonal.nationalCode && (
                   <span className="text-red-500 text-sm">
-                    {errorsPersonal.natinoalCode.message}
+                    {errorsPersonal.nationalCode.message}
                   </span>
                 )}
 
@@ -133,7 +132,8 @@ function ProfilePage() {
                         locale={persian_fa}
                         value={birthDate}
                         onChange={(date) => {
-                          field.onChange(date?.format("YYY/MM/DD"));
+                          const dateString = date?.format?.("YYYY/MM/DD") || "";
+                          field.onChange(dateString)
                         }}
                         render={(value, openCalendar) => {
                           return (
@@ -221,9 +221,9 @@ function ProfilePage() {
             <div className="flex">
               <p className="mt-[28px] mr-[12px]">نام و نام خانوادگی</p>
               <span className="mt-[28px] mr-[32px]">{personal?.fullName}</span>
-              <p className="mr-[261px] mt-[28px]">کد ملی</p>
-              <span className="mr-[50px] mt-[28px]">
-                {personal?.natinoalCode}
+              <p className="mr-[300px] mt-[28px]">کد ملی</p>
+              <span className="mr-[60px] mt-[28px]">
+                {personal?.nationalCode ?? personal?.natinoalCode}
               </span>
             </div>
 
@@ -291,14 +291,14 @@ function ProfilePage() {
               </button>
             </div>
             <div className="flex">
-              <p className="mr-[12px] mt-[28px] text-nowrap">شماره شبا</p>
+              <p className="mr-[12px] mt-[35px] text-nowrap">شماره شبا</p>
               <span className="mr-[84px] mt-[39px]">{personal?.shaba_code}</span>
-              <p className="mr-[315px] mt-[28px]">شماره کارت</p>
-              <span className="mr-[32px] mt-[28px]">{personal?.debitCard_code}</span>
+              <p className="mr-[290px] mt-[28px]">شماره کارت</p>
+              <span className="mr-[32px] mt-[30px]">{personal?.debitCard_code}</span>
             </div>
             <div className="flex">
               <p className="mr-[12px] mt-[28]   ">شماره حساب</p>
-              <span className="mt-[39px] mr-[68px] ">{personal?.accountIdentifier}</span>
+              <span className="mt-[30px] mr-[68px] ">{personal?.accountIdentifier}</span>
             </div>
           </div>
         )}

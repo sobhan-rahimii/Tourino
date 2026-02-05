@@ -1,4 +1,4 @@
-import getTourDetails from "@/services/getTorDetails";
+import getTourDetails from "@/core/services/getTourDetails";
 import Image from "next/image";
 import React from "react";
 import arbil from "../../../assets/images/icon/arbil.png";
