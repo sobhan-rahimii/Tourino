@@ -4,7 +4,7 @@ import { useGetUserData } from "@/core/services/queries"
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 
-function AuthProvider() {
+function AuthProvider({children}) {
     const router = useRouter()
     const {data,isPending} = useGetUserData()
     console.log({data});
@@ -16,7 +16,7 @@ function AuthProvider() {
     if(isPending) return <p>Loading</p>
 
   return (
-    <div>AuthProvider</div>
+    <div>{children}</div>
   )
 }
 
