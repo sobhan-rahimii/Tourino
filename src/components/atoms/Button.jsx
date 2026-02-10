@@ -37,7 +37,7 @@ function Button() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <div className="flex">
-                <span className="flex text-[#28A745]  w-[180px] h-[44px] mt-[23px]  mr-[309.5px]">
+                <span className="flex text-[#28A745]  w-[180px] h-[44px]  mt-[15px] ">
                   {data.data.mobile}
                   <ChevronDown className="text-[#28A745] mr-[2px] " />
                 </span>
