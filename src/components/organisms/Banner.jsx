@@ -6,7 +6,7 @@ export default function Banner() {
   return (
     <>
       <div className=" relative w-full  ">
-        <Image src={banner} alt="bannerr" width={1920} />
+        <Image src={banner} alt="bannerr" width={1920} className="w-full " />
       </div>
     </>
   );

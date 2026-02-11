@@ -9,6 +9,9 @@ import { useGetUserData } from "@/core/services/queries";
 import user from "../../assets/images/icon/user.png";
 import profileuser from "../../assets/images/icon/profileuser.png";
 import logout from "../../assets/images/icon/logout.png";
+
+import signin from "../../assets/images/icon/signin.png"
+
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -25,10 +28,12 @@ function Button() {
   const { data } = useGetUserData();
   const router = useRouter();
   const handleLogOut = () => {
-    document.cookie = "accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-    document.cookie = "refreshToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-    
-    window.location.reload()
+    document.cookie =
+      "accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    document.cookie =
+      "refreshToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+
+    window.location.reload();
   };
   return (
     <div>
@@ -78,24 +83,30 @@ function Button() {
           </DropdownMenu>
         </div>
       ) : (
-        <button
-          onClick={() => setIsOpen(true)}
-          className="border-[2px] border-solid border-[#28A745] pl-[15px]  pt-[8px] pb-[8px] mt-[15px] mb-[15px] mr-[293px] w-[166px] h-[44px]  rounded-lg"
-        >
-          <span className="flex ">
-            <Image
-              src={profile}
-              width={24}
-              height={24}
-              className="mr-[10px]"
-              alt="profilee"
-            />
-            <p className="pl-[15px] pr-[4px] w-[108px] h-[28px] pb-[8px] text-[#28A745] font-yekan font-medium font-[18px] font-normal">
-              {" "}
-              ورود | ثبت نام
-            </p>
-          </span>
-        </button>
+        <>
+          <button
+            onClick={() => setIsOpen(true)}
+            className=" hidden lg:flex  border-[2px] border-solid border-[#28A745] pl-[15px]  pt-[8px] pb-[8px] mt-[15px] mb-[15px] mr-[293px] w-[166px] h-[44px]  rounded-lg"
+          >
+            <span className="flex ">
+              <Image
+                src={profile}
+                width={24}
+                height={24}
+                className="mr-[10px]"
+                alt="profilee"
+              />
+              <p className="pl-[15px] pr-[4px] w-[108px] h-[28px] pb-[8px] text-[#28A745] font-yekan font-medium font-[18px] font-normal">
+                {" "}
+                ورود | ثبت نام
+              </p>
+            </span>
+          </button>
+
+          <button onClick={()=>setIsOpen(true)} className="lg:hidden flex items-center ml-[31px] " >
+            <Image src={signin} width={40} height={40} alt="login" />
+          </button>
+        </>
       )}
     </div>
   );

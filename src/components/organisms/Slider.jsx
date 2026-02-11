@@ -17,7 +17,7 @@ const images = [onephoto, twophoto, treephoto, fourphoto];
 
 function Slider() {
   return (
-    <div className="w-[389px] h-[479px] mt-[94 px]  ml-[286px] mr-[96px] mb-[79px]   ">
+    <div className="w-[389px] h-[479px] mt-[94 px]  lg:ml-[286px] lg:mr-[96px] lg:mb-[79px]   ">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={10}

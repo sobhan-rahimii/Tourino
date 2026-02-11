@@ -11,7 +11,7 @@ function WhyTourino() {
   return (
     <>
       <div className="w-full mt-[102px]  h-[676px]">
-        <div className=" flex  mr-[152px] mt-[94px]   ">
+        <div className=" flex  lg:mr-[152px] lg:mt-[94px] mr-[47px]   ">
           <Image
             src={queicon}
             width={59}
@@ -25,17 +25,19 @@ function WhyTourino() {
 
           <span className="mr-[15px] content-center ">چراتورینو؟</span>
         </div>
-        <h1 className="mr-[152px] mt-[32px] ">تور طبیعت گردی</h1>
-        <div className="flex   ">
-          <p className="w-[517px] h-[264px] font-[400] text-[20px] leading-[220.00000000000003%] mr-[152px] mt-[16px] ">
+        <h1 className="mr-[152px] mt-[32px] hidden lg:block ">تور طبیعت گردی</h1>
+        <div className="lg:flex flex-row flex-col   ">
+          <p className="w-[517px] h-[264px] font-[400] hidden lg:block text-[20px] leading-[220.00000000000003%] mr-[152px] mt-[16px] ">
             اگر دوست داشته باشید که یک جاذبه طبیعی را از نزدیک ببینید و در دل
             طبیعت چادر بزنید یا در یک اقامتگاه بوم گردی اتاق بگیرید، باید تورهای
             طبیعت‌گردی را خریداری کنید. اما اگر بخواهید از جاذبه‌های گردشگری و
             آثار تاریخی یک مقصد خاص بازدید کنید، می‌توانید تورهای فرهنگی و
             تاریخی را خریداری کنید.
           </p>
-
+           <div className=" inline-block mr-[31px] mt-[16px]">
           <Slider />
+
+            </div> 
           {/* border: 1px solid #00000033 */}
         </div>
         <hr className="w-full border border-solid border-[#00000033 ]  " />

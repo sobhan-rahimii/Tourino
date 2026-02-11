@@ -8,9 +8,11 @@ import Image from "next/image";
 import LogoImg from "../../assets/images/icon/LogoImg.png";
 import HambergerMenu from "../atoms/HambergerMenu";
 import { HiMenu,HiX } from "react-icons/hi";
+import { useModal } from "../partials/containers/ModalContainer";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const {setIsOpen} = useModal()
   return (
     <div className=" w-full lg:max-w-[1200px] h-[74px] mx-auto ">
       <div className="flex justify-between w-full h-full  items-center  ">

@@ -9,19 +9,17 @@ import WhyTourino from "@/components/organisms/WhyTourino";
 import getTours from "@/core/services/getTours";
 import Image from "next/image";
 
-
 export const dynamic = "force-dynamic";
 
-export default async function Home({searchParams}) {
+export default async function Home({ searchParams }) {
+  const sParams = await searchParams;
 
-  const sParams = await searchParams
-
-  const filters = {}
-  if(sParams.originId) filters.originId = sParams.originId
-  if(sParams.destinationId) filters.destinationId = sParams.destinationId
-  if(sParams.startDate) filters.startDate = sParams.startDate
-  if(sParams.endDate) filters.endDate=sParams.endDate
-  const tours = await getTours(filters)
+  const filters = {};
+  if (sParams.originId) filters.originId = sParams.originId;
+  if (sParams.destinationId) filters.destinationId = sParams.destinationId;
+  if (sParams.startDate) filters.startDate = sParams.startDate;
+  if (sParams.endDate) filters.endDate = sParams.endDate;
+  const tours = await getTours(filters);
 
   return (
     <>
@@ -29,19 +27,15 @@ export default async function Home({searchParams}) {
 
       <Title />
       <SearchBox />
-      <div className="w-[1440px] mr-[75px] mt-[84px]">
+      <div className="w-full  lg:max-w-[1200px] mr-[31px] ml-[265px] lg:mr-[75px] mt-[84px] ">
         <CardTitle />
       </div>
-      <div className=" w-[1140px] grid grid-cols-4  mt-[11px]  mr-auto ml-auto gap-x-[24.75px] gap-y-[30px]">
+      <div className=" w-full  lg:max-w-[1200px] lg:grid lg:grid-cols-4 gap-[24px]  flex flex-col mt-[11px]  pl-[31px] pr-[31.56px] lg:mr-auto lg:ml-auto">
         {tours.map((tour) => (
           <TourCards key={tour.id} {...tour} />
         ))}
       </div>
       <BannerPhone />
-      {/* <div className="w-[300px]">
-      <Slider/>
-
-      </div> */}
 
       <WhyTourino />
     </>

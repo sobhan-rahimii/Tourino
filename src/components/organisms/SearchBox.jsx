@@ -37,7 +37,7 @@ function SearchBox() {
   } = useSearchFilters(cities);
 
   const uniqueOrigins = Array.from(
-    new Map(cities?.map((item) => [item.origin.name, item.origin])).values()
+    new Map(cities?.map((item) => [item.origin.name, item.origin])).values(),
   );
 
   useEffect(() => {
@@ -49,13 +49,13 @@ function SearchBox() {
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    applyFilters()
+    applyFilters();
   };
   const formatDate = (date) => new Intl.DateTimeFormat("fa-IR").format(date);
 
   return (
     <form onSubmit={submitHandler}>
-      <div className=" flex  w-[874px] h-[74px] border border-solid border-[#00000026] rounded-[20px] mr-[288px] ml-[278px] mt-[28px] ">
+      <div className=" hidden lg:flex w-full  max-w-[874px] h-[74px] border border-solid border-[#00000026] rounded-[20px] mr-[288px] ml-[278px] mt-[28px] ">
         <DropdownMenu>
           <DropdownMenuTrigger className="w-[81px] h-[39px]">
             <div className="flex">
@@ -116,9 +116,7 @@ function SearchBox() {
           </DropdownMenuTrigger>
           <DropdownMenuContent className="   mr-[80px]  flex-col w-[218px] h-fit border border-solid border-[#00000033]  rounded-[8px] bg-[#FFFFFF]">
             <DropdownMenuLabel className="text-right">
-              <span className="w-[218px] h-[35px] mr-[] ">
-              مقصد
-              </span>
+              <span className="w-[218px] h-[35px] mr-[] ">مقصد</span>
             </DropdownMenuLabel>
             {cities.map((city2) => (
               <DropdownMenuItem
@@ -157,7 +155,7 @@ function SearchBox() {
                 {dateRange?.from
                   ? dateRange.to
                     ? `${formatDate(dateRange.from)} تا ${formatDate(
-                        dateRange.to
+                        dateRange.to,
                       )}`
                     : formatDate(dateRange.from)
                   : "تاریخ"}
@@ -177,6 +175,37 @@ function SearchBox() {
         >
           جستجو
         </button>
+      </div>
+      <div className="lg:hidden  flex-col">
+        <div className="lg:hidden flex ">
+          <DropdownMenu>
+            <DropdownMenuTrigger className="w-[160px] h-[47px] rounded-[12px] border border-solid border-[#00000026] mr-[31px] ml-[31px] mt-[25px]">
+              <div className="flex items-center ">
+                <Image src={location} width={18} height={18} alt="origin" className="mr-[52px] mt-[14.5px] mb-[14.5px]" />
+                <span className="mr-[8px]">مبدا</span>
+              </div>
+            </DropdownMenuTrigger>
+          </DropdownMenu>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger className="w-[160px] h-[47px] rounded-[12px] border border-solid borer-[#00000026] mr-[8px] mt-[25px] ml-[31px]  ">
+              <div className="flex ">
+                <Image src={global} width={18} height={18} alt="global" className="mr-[46.5px] mt-[14.5px] mb-[14.5px]" />
+                <span className="mr-[8px] mt-[14px] mb-[14px]">مقصد</span>
+              </div>
+            </DropdownMenuTrigger>
+          </DropdownMenu>
+        </div>
+        <DropdownMenu>
+          <DropdownMenuTrigger className="w-[328px] h-[47px] border border-solid border-[#00000026] rounded-[12px] mr-[31px]  ml-[31px] mt-[12px] ">
+            <div className="flex items-center">
+              <Image src={calendar} width={18} height={18} alt="calendar" className="mr-[127px] mt-[14.5px] mb-[14.5px]"  />
+              <span className="mt-[14px] mr-[8px] mb-[14px]">تاریخ</span>
+
+            </div>
+          </DropdownMenuTrigger>
+        </DropdownMenu>
+        <button className="w-[328px] h-[47px] bg-[#28A745] mr-[31px] mt-[24px] ml-[31px]  text-center rounded-[16px]">جستجو</button>
       </div>
     </form>
   );
